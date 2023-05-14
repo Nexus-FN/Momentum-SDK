@@ -18,7 +18,7 @@ yarn add momentumsdk
 
 ```ts
     //Import the SDK
-    import { Momentum } from 'momentumsdk'
+    import Momentum from 'momentumsdk'
 
     //Create a new instance of the SDK
     const momentum = new Momentum({

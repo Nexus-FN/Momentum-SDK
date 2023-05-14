@@ -2,7 +2,7 @@
 
 interface MomentumOptions {
     url: string;
-    apikey: string & { length: 32 };
+    apikey: string;
 }
 
 type UserKey = "username" | "accountId" | "email" | "discordId";
