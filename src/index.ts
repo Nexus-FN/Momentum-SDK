@@ -12,7 +12,7 @@ class Momentum {
     private apikey: string;
 
     constructor(options: MomentumOptions) {
-        this.url = options.url;
+        this.url = options.url + "/api";
         validateApiKey(options.apikey);
         this.apikey = options.apikey;
         if (!this.url) {
@@ -26,16 +26,15 @@ class Momentum {
     public async getUser(key: UserKey, value: string) {
 
         try {
-            await fetch(this.url + "/user/" + key + "/" + value, {
+            const user = await fetch(this.url + "/user/" + key + "/" + value, {
                 method: "GET",
                 headers: {
                     "x-api-key": this.apikey,
                 }
             })
-                .then((response: Response) => {
-                    return response.json();
-                });
+            return await user.json();
         } catch (error: any) {
+            console.log(error);
             throw new Error(error);
         }
 
@@ -44,7 +43,7 @@ class Momentum {
     public async updateUser(key: UserKey, value: string, field: string, newValue: string) {
 
         try {
-            await fetch(this.url + "/user/" + key + "/" + value, {
+            const updatedUser = await fetch(this.url + "/user/" + key + "/" + value, {
                 method: "POST",
                 headers: {
                     "x-api-key": this.apikey,
@@ -54,10 +53,9 @@ class Momentum {
                     newValue: newValue
                 })
             })
-                .then((response: Response) => {
-                    return response.json();
-                });
+            return await updatedUser.json();
         } catch (error: any) {
+            console.log(error);
             throw new Error(error);
         }
 
@@ -66,16 +64,15 @@ class Momentum {
     public async getProfile(accountId: string, value: string) {
 
         try {
-            await fetch(this.url + "/profile/accountId/" + accountId + "/" + value, {
+            const profile = await fetch(this.url + "/profile/accountId/" + accountId + "/" + value, {
                 method: "GET",
                 headers: {
                     "x-api-key": this.apikey,
                 }
             })
-                .then((response: Response) => {
-                    return response.json();
-                });
+            return await profile.json();
         } catch (error: any) {
+            console.log(error);
             throw new Error(error);
         }
 
