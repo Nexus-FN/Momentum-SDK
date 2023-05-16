@@ -5,6 +5,19 @@ interface MomentumOptions {
     apikey: string;
 }
 
+interface User {
+    username: string;
+    username_lower: string;
+    password: string;
+    reports: number;
+    accountId: string;
+    email: string;
+    discordId: string;
+    createdAt: string;
+    updatedAt: string;
+    mfa: boolean;
+}
+
 type UserKey = "username" | "accountId" | "email" | "discordId";
 
 class Momentum {
@@ -23,7 +36,7 @@ class Momentum {
         }
     }
 
-    public async getUser(key: UserKey, value: string) {
+    public async getUser(key: UserKey, value: string): Promise<User> {
 
         try {
             const user = await fetch(this.url + "/user/" + key + "/" + value, {
@@ -32,7 +45,8 @@ class Momentum {
                     "x-api-key": this.apikey,
                 }
             })
-            return await user.json();
+            const userReturn: User = await user.json();
+            return userReturn;
         } catch (error: any) {
             console.log(error);
             throw new Error(error);
@@ -40,7 +54,7 @@ class Momentum {
 
     }
 
-    public async updateUser(key: UserKey, value: string, field: string, newValue: string) {
+    public async updateUser(key: UserKey, value: string, field: string, newValue: string): Promise<User> {
 
         try {
             const updatedUser = await fetch(this.url + "/user/" + key + "/" + value, {
@@ -53,7 +67,8 @@ class Momentum {
                     newValue: newValue
                 })
             })
-            return await updatedUser.json();
+            const userReturn: User = await updatedUser.json();
+            return userReturn;
         } catch (error: any) {
             console.log(error);
             throw new Error(error);
@@ -61,7 +76,7 @@ class Momentum {
 
     }
 
-    public async getProfile(accountId: string, value: string) {
+    public async getProfile(accountId: string, value: string): Promise<any> {
 
         try {
             const profile = await fetch(this.url + "/profile/accountId/" + accountId + "/" + value, {
