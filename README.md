@@ -5,6 +5,9 @@
 # Momentum SDK
 
 This is the official SDK for the Momentum Backend. It is written in TypeScript and is fully typed to ensure a smooth experience.
+This SDK also includes a wrapper for the Asteria api available at https://asteria.nexusfn.net
+
+The documentation is available at https://docs.nexusfn.net
 
 ## Installation
 
@@ -12,28 +15,6 @@ This is the official SDK for the Momentum Backend. It is written in TypeScript a
 npm i momentumsdk
 pnpm i momentumsdk
 yarn add momentumsdk
-```
-
-## Usage
-
-```ts
-    //Import the SDK
-    import Momentum from 'momentumsdk'
-
-    //Create a new instance of the SDK
-    const momentum = new Momentum({
-        url: "https://apollo.nexusfn.net/api/",
-        apikey: "APIKEY"
-    })
-
-    //Get a user by their the provided key (username, email, accountId, discordId)
-    await momentum.getUser("username", "Zetax");
-
-    //Update a users fields by their key (username, email, accountId, discordId) with the new value
-    const updatedUser = momentum.updateUser("username", "Zetax", "email", "newemail@gmail.com");
-
-    //Get a users profile by their accountId
-    await momentum.getProfile("accountId", "1234567890");
 ```
 
 ## Support

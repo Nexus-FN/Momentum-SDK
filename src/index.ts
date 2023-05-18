@@ -1,4 +1,4 @@
-// src/momentum.ts
+import Asteria from "./asteria";
 
 interface MomentumOptions {
     url: string;
@@ -106,3 +106,4 @@ function validateApiKey(apikey: string): void {
 }
 
 export default Momentum;
+export { Asteria };
